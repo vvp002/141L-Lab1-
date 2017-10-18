@@ -7,6 +7,7 @@ unsigned int2float(int x) {
         return 0;
     else {
         signBit = 1;
+    }
     //Determining exponent
     if (copy < 0) {
         temp=copy = copy*-1;
@@ -23,5 +24,6 @@ unsigned int2float(int x) {
     while (fraction < (1<<9))
         fraction <<= 1;
     fraction <<= 1;
-    
+
     return (signBit<<15) | (exponent<<10) | fraction;
+}
