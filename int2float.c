@@ -15,22 +15,13 @@ unsigned int2float(int x) {
         copy = copy>>1;
         exponent++;
     }
-    exponent += 127;
+    exponent += 15;
     //Determining fraction
     fraction = temp;
-    while (fraction > (1<<22))
+    while (fraction > (1<<9))
         fraction >>= 1;
-    while (fraction < (1<<22))
+    while (fraction < (1<<9))
         fraction <<= 1;
     fraction <<= 1;
-    return (signBit<<31) | (exponent<<23) | fraction;
-// float convert_int(unsigned int num) {
-//     float result;
-//     unsigned int sign_bit = (num & 0x80000000);
-//     unsigned int exponent = (num & 0x7F800000) >> 23;
-//     unsigned int mantissa = (num & /* insert mask value here */);
-
-//     /* you can take over from here */
-
-//     return result;
-// }
+    
+    return (signBit<<15) | (exponent<<10) | fraction;
